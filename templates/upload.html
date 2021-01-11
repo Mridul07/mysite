@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3> Welcome to the create complaint page {{user.email}} !!</h3><br>
+
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <br><br><br><br><br><br>
+        <input type="file" name="document">
+        <button type="submit">Upload Image</button>
+
+    </form>
+
+    {% if url %}
+        <p> Uploaded file : <a href="{{ url }}"></a> {{ url }} </p>
+
+    {% else %}
+        <p> Why isnt the url showing!! </p>
+    {% endif %}
+
+
+
+{% endblock %}

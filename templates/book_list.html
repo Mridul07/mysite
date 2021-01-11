@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="col-xl-12 col-md-6">
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Total Complaints</h5>
+            </div>
+            <div class="card-block px-0 py-3">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email_id</th>
+                            <th>Author</th>
+                            <th>Description</th>
+                            <th>Download</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td> {{ book.email }} </td>
+                            <td> {{ book.author }} </td>
+                            {% if book.description %}
+                                <td> {{ book.description }} </td>
+                            {% else %}
+                                <td>Description was not provided</td>
+                            {% endif %}
+                            <td> 
+                                <a href="{{  book.img.url  }}" class="btn btn-primary btn-sm" target="_blank">Download Image</a>
+                            </td>
+                            <td>
+
+                                {% if book.status == True %}
+                                <p>Accepted</p>
+                                {% elif book.status == False %}
+                                <p>Pending</p>
+                                {% else %}
+                                <p>Status Unavailable</p>
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                <form method="POST" action="{% url 'delete_book' book.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Withdraw</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

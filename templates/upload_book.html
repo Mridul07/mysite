@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-xl-8 col-md-6">
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Register Complaints</h5>
+            </div>
+            <div class="card-block px-0 py-3">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Create Complaint</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

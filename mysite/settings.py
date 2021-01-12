@@ -80,8 +80,14 @@ AUTH_USER_MODEL = 'tester.MyUser'   # Added by me
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_aws_demo',
+        'USER': 'django_aws_demo',
+        'PASSWORD': 'django123',
+        'HOST': 'django-aws-demo.ckg7b8udmhtp.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
